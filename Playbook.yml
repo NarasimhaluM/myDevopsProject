@@ -10,5 +10,7 @@
     - tree
   - name: Start docker
     service: name=docker state=started
+  - name: Pull the image
+    command: docker pull devopsedu/webapp
   - name: Run the image
-    command: docker service create --name mydevproj -p 8282:80 --replicas 2 devopsedu/webapp:v1
+    command: docker run --name myproj -d -p 8282:80 devopsedu/webapp
