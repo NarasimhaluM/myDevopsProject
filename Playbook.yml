@@ -13,6 +13,6 @@
   - name: Clone a git repo
     git: repo=https://github.com/edureka-devops/projCert.git dest=/tmp/gitrepo
   - name: Build docker file
-    command: chdir=/tmp/gitrepo docker build -t myimageaddr:v1 .
+    command: chdir=/tmp/gitrepo docker build -t myimageproj:v1 .
   - name: Run the image
     command: docker run -itd -P edurekaProj:v1
