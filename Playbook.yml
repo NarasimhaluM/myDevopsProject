@@ -12,10 +12,6 @@
     - tree
   - name: Start docker
     service: name=docker state=started
-  - name: Clear Existing Container
-    command: docker rm -f $(docker ps -aq)
-  - name: Clear Existing Images
-    command: docker system prune --all
   - name: Clone a git repo
     git: repo=https://github.com/NarasimhaluM/myDevopsProject.git dest=/tmp/gitrepo
   - name: Build docker file
