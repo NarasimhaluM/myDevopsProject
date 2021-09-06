@@ -13,8 +13,8 @@
   - name: Start docker
     service: name=docker state=started
   - name: Clone a git repo
-    git: repo=https://github.com/NarasimhaluM/myDevopsProject.git dest=/tmp/gitrepo
+    git: repo=https://github.com/NarasimhaluM/myDevopsProject.git dest=/var/www/html
   - name: Build docker file
-    command: chdir=/tmp/gitrepo docker build -t mydevopsproj:v1 .
+    command: chdir=/var/www/html docker build -t mydevopsproj:v1 .
   - name: Run the image
     command: docker run -itd -P mydevopsproj:v1
