@@ -1,3 +1,5 @@
+---
+
 - hosts: webservers
   become: true
   become_user: root
@@ -10,7 +12,13 @@
     - tree
   - name: Start docker
     service: name=docker state=started
-  - name: Pull the image
-    command: docker pull devopsedu/webapp
+  - name: Clear Existing Container
+    command: docker rm -f $(docker ps -aq)
+  - name: Clear Existing Images
+    command: docker system prune --all
+  - name: Clone a git repo
+    git: repo=https://github.com/NarasimhaluM/myDevopsProject.git dest=/tmp/gitrepo
+  - name: Build docker file
+    command: chdir=/tmp/gitrepo docker build -t mydevopsproj:v1 .
   - name: Run the image
-    command: docker run --name myproj -d -p 8282:80 devopsedu/webapp
+    command: docker run -itd -P mydevopsproj:v1
