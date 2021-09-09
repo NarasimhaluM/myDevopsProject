@@ -17,4 +17,4 @@
   - name: Build docker file
     command: chdir=/tmp/gitrepo docker build . -t mybuildimage
   - name: Run the image
-    command: docker run -itd -p 80:80 --name myproject mybuildimage
+    command: docker run -itd -p 8181:80 --name myproject mybuildimage
