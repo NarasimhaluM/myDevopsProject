@@ -1,0 +1,19 @@
+---
+
+- hosts: webserver
+  become: true
+  become_user: root
+  tasks:
+  - name: Install packages
+    yum: name={{item}} state=present
+    loop:
+    - git
+    - tree
+  - name: Start docker
+    service: name=docker state=started
+  - name: Clone a git repo
+    git: repo=https://github.com/NarasimhaluM/myDevopsProject.git dest=/tmp/gitrepo
+  - name: Build docker file
+    command: chdir=/tmp/gitrepo docker build . -t mybuildimage
+  - name: Run the image
+    command: docker run -itd -p 80:80 --name myproject mybuildimage
