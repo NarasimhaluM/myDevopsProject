@@ -20,7 +20,7 @@ chromeOptions.setExperimentalOption("useAutomationExtension", false);
 
 WebDriver driver = new ChromeDriver(chromeOptions);
 
-driver.get("http://18.117.251.228:80");
+driver.get("http://18.118.158.234:8181/");
 
 driver.manage().timeouts().implicitlyWait(3, TimeUnit.SECONDS);
 driver.findElement(By.id("About Us")).click();
